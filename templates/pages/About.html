@@ -1,0 +1,680 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>About - TripTrack</title>
+</head>
+
+<body class="hero-gradient-dark text-white">
+
+    <!--  Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-50 bg-[#0b132b] flex justify-between items-center px-10 py-3 border-b border-gray-700">
+        <div class="flex items-center space-x-2">
+            <img src="{% static '/src/images/logo.jpg' %}" alt="Logo" class="h-8 w-8">
+            <span class="text-xl font-bold">Travel Smart</span>
+        </div>
+
+        <ul class="hidden md:flex space-x-8 font-medium">
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
+            <li class="text-blue-400 cursor-pointer font-semibold">About</li>
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
+        </ul>
+
+        <div class="flex items-center space-x-3">
+            <button
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 text-black hover:bg-yellow-400 transition">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </button>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section
+        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 bg-gradient-to-br from-[#0b132b] to-[#1b263b]">
+        <!-- Heading -->
+        <h1 data-aos="fade-up" class="text-4xl md:text-5xl font-bold mb-4">
+            Your Journey, <span class="text-blue-400">Simplified TripTrack</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="100" class="text-gray-300 max-w-2xl mb-8">
+            Experience effortless planning, fair expense sharing, and stress-free group travel like never before.
+        </p>
+
+        <!-- Features Grid -->
+        <div data-aos="fade-up" data-aos-delay="200"
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mb-10">
+            <!-- Card 1 -->
+            <div
+                class="bg-[#111b3c] p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105 text-center">
+                <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-4">
+                    <i class="fas fa-route text-blue-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Smart Routing</h3>
+                <p class="text-gray-400 text-sm">Plan routes efficiently with AI-powered suggestions</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="bg-[#111b3c] p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105 text-center">
+                <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-4">
+                    <i class="fas fa-balance-scale text-yellow-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Fair Splits</h3>
+                <p class="text-gray-400 text-sm">Accurate, transparent expense splitting for everyone</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="bg-[#111b3c] p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105 text-center">
+                <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-4">
+                    <i class="fas fa-users text-green-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Group Focused</h3>
+                <p class="text-gray-400 text-sm">Built to keep your crew organized and stress-free</p>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="#" data-aos="zoom-in"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105 cursor-pointer flex items-center gap-2">
+            Start Your Adventure <i class="fas fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <section class="bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white py-20 relative">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="px-4 py-1 text-sm bg-blue-900 rounded-full text-blue-400">Our Journey</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4">
+                    From Idea to <span class="text-blue-400">Global Solution</span>
+                </h2>
+                <p class="text-gray-400 mt-2 text-sm md:text-base">
+                    How a simple frustration during a group trip led us to create TripTrack
+                </p>
+            </div>
+
+            <!-- Timeline Wrapper -->
+            <div class="relative">
+                <!-- Vertical connecting line -->
+                <div
+                    class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-green-400 to-yellow-400 opacity-50">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative" data-aos="fade-right">
+                    <div class="md:col-span-1 md:text-right">
+                        <!-- Gradient border with rounded corners -->
+                        <div
+                            class="inline-block rounded-2xl p-[7px] bg-gradient-to-r from-blue-600 to-sky-400 hover:scale-105 transform transition duration-300 shadow-lg">
+                            <div class="bg-[#0b1622] rounded-2xl p-6 md:p-7">
+                                <h3 class="font-semibold text-lg mb-2">The Problem</h3>
+                                <p class="text-gray-400 text-sm">
+                                    In 2022, our founders returned from a disastrous group trip where money arguments
+                                    ruined the experience. We knew there had to be a better way.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icon badge (number 1) -->
+                    <div class="absolute -top-2 left-1/2 -translate-x-1/2">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 bg-blue-500 text-white rounded-full flex items-center justify-center shadow-xl border-[6px] border-blue-300">
+                            <span class="font-bold text-xl md:text-2xl">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative" data-aos="fade-left">
+                    <div class="md:col-start-2">
+                        <!-- Gradient border with rounded corners -->
+                        <div
+                            class="inline-block rounded-2xl p-[7px] bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transform transition duration-300 shadow-lg">
+                            <div class="bg-[#0b1622] rounded-2xl p-6 md:p-7">
+                                <h3 class="font-semibold text-lg mb-2">The Breakthrough</h3>
+                                <p class="text-gray-400 text-sm">
+                                    After months of research, we developed an AI algorithm that automatically suggests
+                                    fair expense splits based on group dynamics and preferences.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icon badge (rocket icons) -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-[65%] -translate-y-1/2">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl border-[6px] border-green-300">
+                            <i class="fas fa-rocket text-2xl md:text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative" data-aos="fade-right">
+                    <div class="md:col-span-1 md:text-right">
+                        <!-- Gradient border with rounded corners -->
+                        <div
+                            class="inline-block rounded-2xl p-[7px] bg-gradient-to-r from-amber-500 to-yellow-400 hover:scale-105 transform transition duration-300 shadow-lg">
+                            <div class="bg-[#0b1622] rounded-2xl p-6 md:p-7">
+                                <h3 class="font-semibold text-lg mb-2">Today</h3>
+                                <p class="text-gray-400 text-sm">
+                                    TripTrack now helps thousands of travelers enjoy stress-free adventures. Our mission
+                                    remains: eliminate money arguments from group travel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icon badge (users, slightly right) -->
+                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 md:translate-x-8">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 bg-yellow-500 text-white rounded-full flex items-center justify-center shadow-xl border-[6px] border-yellow-300">
+                            <i class="fas fa-users text-2xl md:text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-gradient-to-b from-[#1b263b] to-[#0d1b2a] py-16">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+
+            <!-- Card 1 -->
+            <div data-aos="fade-up"
+                class="bg-[#0b1622] rounded-xl shadow-md hover:shadow-lg transition duration-300 p-8">
+                <h3 class="text-4xl font-extrabold text-blue-400 mb-2">10K+</h3>
+                <p class="text-gray-400 text-sm md:text-base">Happy Travelers</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div data-aos="fade-up" data-aos-delay="100"
+                class="bg-[#0b1622] rounded-xl shadow-md hover:shadow-lg transition duration-300 p-8">
+                <h3 class="text-4xl font-extrabold text-green-400 mb-2">50+</h3>
+                <p class="text-gray-400 text-sm md:text-base">Countries Reached</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div data-aos="fade-up" data-aos-delay="200"
+                class="bg-[#0b1622] rounded-xl shadow-md hover:shadow-lg transition duration-300 p-8">
+                <h3 class="text-4xl font-extrabold text-amber-400 mb-2">95%</h3>
+                <p class="text-gray-400 text-sm md:text-base">Less Arguments Reported</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Problem & Solution Section -->
+    <section class="bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] py-16 text-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+
+            <!-- Label Button -->
+            <div data-aos="fade-up" class="mb-4">
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1 bg-[#0b1622] text-blue-400 text-xs font-semibold rounded-full border border-blue-500">
+                    <i class="fas fa-wallet"></i> Travel Finance Solved
+                </span>
+            </div>
+
+            <!-- Heading -->
+            <h2 data-aos="fade-up" data-aos-delay="100" class="text-3xl md:text-4xl font-bold mb-4">
+                The <span class="text-blue-400">Problem</span> & Our <span class="text-green-400">Solution</span>
+            </h2>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 max-w-2xl mx-auto mb-12">
+                Group travel should create memories, not financial stress. Here’s how we’re changing the game.
+            </p>
+
+            <!-- Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Problem Card -->
+                <div data-aos="fade-right"
+                    class="bg-[#0b1622] rounded-2xl p-8 shadow-[0_0_15px_rgba(29,78,216,0.4)] border-l-4 border-blue-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#1a1f35] flex items-center justify-center text-red-500 text-lg">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">The Problem</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm md:text-base text-left">
+                        <li class="flex items-start gap-2"><span class="text-red-500 text-lg">•</span> 72% of travelers
+                            report money conflicts during group trips</li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 text-lg">•</span> Endless
+                            spreadsheets and awkward ‘who owes what’ conversations</li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 text-lg">•</span> Uneven spending
+                            creates tension among friends</li>
+                        <li class="flex items-start gap-2"><span class="text-red-500 text-lg">•</span> Last-minute
+                            budget surprises ruin the experience</li>
+                    </ul>
+                </div>
+
+                <!-- Solution Card -->
+                <div data-aos="fade-left"
+                    class="bg-[#0b1622] rounded-2xl p-8 shadow-[0_0_15px_rgba(16,185,129,0.4)] border-l-4 border-green-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#1a1f35] flex items-center justify-center text-green-400 text-lg">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Our Solution</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm md:text-base text-left">
+                        <li class="flex items-start gap-2"><span class="text-green-400 text-lg">•</span> AI-powered
+                            expense tracking that works in real-time</li>
+                        <li class="flex items-start gap-2"><span class="text-green-400 text-lg">•</span> Automated
+                            fair-split algorithms customized for your group</li>
+                        <li class="flex items-start gap-2"><span class="text-green-400 text-lg">•</span> Visual budget
+                            dashboards everyone can understand</li>
+                        <li class="flex items-start gap-2"><span class="text-green-400 text-lg">•</span> Payment
+                            integration to settle up instantly</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-6 text-center" data-aos="fade-up">
+                <!-- Top Badge -->
+                <div class="inline-block bg-[#0b1a33] text-blue-400 px-4 py-1 rounded-full text-sm mb-6">
+                    <i class="fas fa-users mr-2"></i> Meet The Team
+                </div>
+
+                <!-- Heading -->
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
+                    The <span class="text-blue-400">Minds</span> Behind Your Better Trips
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-12">
+                    We`re travelers, technologists, and problem-solvers united by one mission: make group travel
+                    finances frictionless.
+                </p>
+
+                <!-- Team Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-[#101d34] rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                        data-aos="zoom-in" data-aos-delay="100">
+                        <img src="{% static '/src/images/bg4.jpg' %}" alt="Alex Chen" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-white font-semibold text-lg">Alex Chen</h3>
+                            <p class="text-blue-400 text-sm mb-4">Founder & CEO</p>
+                            <div class="flex space-x-3 justify-center">
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-[#101d34] rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                        data-aos="zoom-in" data-aos-delay="200">
+                        <img src="{% static '/src/images/bg4.jpg' %}" alt="Ayomide Red"
+                            class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-white font-semibold text-lg">Ayomide Red</h3>
+                            <p class="text-blue-400 text-sm mb-4">Lead Developer</p>
+                            <div class="flex space-x-3 justify-center">
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-[#101d34] rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                        data-aos="zoom-in" data-aos-delay="300">
+                        <img src="{% static '/src/images/bg4.jpg' %}" alt="Savilla D" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-white font-semibold text-lg">Savilla D</h3>
+                            <p class="text-blue-400 text-sm mb-4">Product Designer</p>
+                            <div class="flex space-x-3 justify-center">
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-[#101d34] rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                        data-aos="zoom-in" data-aos-delay="400">
+                        <img src="{% static '/src/images/bg4.jpg' %}" alt="Fuad Ishola"
+                            class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-white font-semibold text-lg">Fuad Ishola</h3>
+                            <p class="text-blue-400 text-sm mb-4">Growth Marketer</p>
+                            <div class="flex space-x-3 justify-center">
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-gray-300 hover:bg-blue-500 hover:text-white hover:shadow-md hover:shadow-blue-500/50 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Why We're Different (fixed pill alignment) -->
+        <section class="text-white py-24 px-6 md:px-12 lg:px-20">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-blue-900 text-blue-300 text-sm font-medium px-4 py-1 rounded-full mb-4">
+                    Why We're Different
+                </span>
+
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+                    Not Just Another <span class="text-blue-500">Budget App</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    We solve the real problems groups face when traveling together
+                </p>
+            </div>
+
+            <!-- Equal-height rows when wrapping -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[1fr]">
+                <!-- Card 1 -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="bg-[#101a2b]/90 rounded-2xl p-6 h-full flex flex-col hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-900 grid place-items-center mb-4">
+                        <i class="fas fa-robot text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">AI-Powered Splits</h3>
+                    <p class="text-gray-400 text-sm flex-1">
+                        Our algorithm learns spending patterns to suggest fair divisions automatically
+                    </p>
+                    <span class="inline-block self-start bg-blue-900 text-blue-300 text-xs px-3 py-1 rounded-full mt-6">
+                        No more spreadsheets
+                    </span>
+                </div>
+
+                <!-- Card 2 -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-[#101a2b]/90 rounded-2xl p-6 h-full flex flex-col hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-green-900 grid place-items-center mb-4">
+                        <i class="fas fa-users text-green-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Group-First Design</h3>
+                    <p class="text-gray-400 text-sm flex-1">
+                        Built specifically for group dynamics with customizable rules for every trip
+                    </p>
+                    <span class="inline-block self-start bg-blue-900 text-blue-300 text-xs px-3 py-1 rounded-full mt-6">
+                        No more spreadsheets
+                    </span>
+                </div>
+
+                <!-- Card 3 -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="bg-[#101a2b]/90 rounded-2xl p-6 h-full flex flex-col hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-900 grid place-items-center mb-4">
+                        <i class="fas fa-chart-line text-yellow-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Real-Time Tracking</h3>
+                    <p class="text-gray-400 text-sm flex-1">
+                        See expenses update live with predictive budgeting that prevents surprises
+                    </p>
+                    <span class="inline-block self-start bg-blue-900 text-blue-300 text-xs px-3 py-1 rounded-full mt-6">
+                        No more spreadsheets
+                    </span>
+                </div>
+
+                <!-- Card 4 -->
+                <div data-aos="fade-up" data-aos-delay="400"
+                    class="bg-[#101a2b]/90 rounded-2xl p-6 h-full flex flex-col hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-900 grid place-items-center mb-4">
+                        <i class="fas fa-magic text-indigo-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Frictionless Settlements</h3>
+                    <p class="text-gray-400 text-sm flex-1">
+                        One-click payments with automatic reminders for outstanding balances
+                    </p>
+                    <span class="inline-block self-start bg-blue-900 text-blue-300 text-xs px-3 py-1 rounded-full mt-6">
+                        No more spreadsheets
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- The TripTrack Difference -->
+        <section class="text-white py-16 px-6 md:px-12 lg:px-20">
+            <div class="text-center mb-12">
+                <!-- Small Gradient Line -->
+                <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-400 mx-auto mb-4 rounded-full"></div>
+
+                <h2 class="text-2xl md:text-3xl font-extrabold">
+                    The <span class="text-blue-500">TripTrack</span> Difference
+                </h2>
+            </div>
+
+            <div
+                class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 rounded-2xl overflow-hidden text-center shadow-md">
+                <!-- Box 1 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-[#101a2b]/90 p-6">
+                    <h4 class="text-gray-400 text-sm mb-2">Traditional Apps</h4>
+                    <p class="text-3xl font-bold text-white mb-1">37%</p>
+                    <p class="text-gray-400 text-sm">
+                        Groups complete trips without money issues
+                    </p>
+                </div>
+
+                <!-- Box 2 -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-[#101a2b]/90 p-6 border-l border-r border-gray-700">
+                    <h4 class="text-gray-400 text-sm mb-2">Basic Splitters</h4>
+                    <p class="text-3xl font-bold text-white mb-1">62%</p>
+                    <p class="text-gray-400 text-sm">
+                        Groups complete trips without money issues
+                    </p>
+                </div>
+
+                <!-- Box 3 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="bg-[#101a2b]/90 p-6">
+                    <h4 class="text-blue-500 text-sm mb-2">TripTrack</h4>
+                    <p class="text-3xl font-bold text-blue-500 mb-1">91%</p>
+                    <p class="text-gray-400 text-sm">
+                        Groups complete trips without money issues
+                    </p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-[#0d1b2a] to-[#1b263b] text-center py-14 px-4">
+        <div class="max-w-xl mx-auto">
+            <!-- Heading -->
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
+                Ready to Travel <span class="text-blue-400">Stress-Free?</span>
+            </h2>
+            <p class="text-gray-300 mb-6 text-sm md:text-base">
+                Join thousands of travelers managing group expenses effortlessly
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-3 mb-4">
+                <a href="#get-started"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
+                    Get Started <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#login"
+                    class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
+                    I Have an Account
+                </a>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex items-center justify-center gap-2 mb-4 text-gray-400 text-xs">
+                <hr class="w-10 border-gray-600"> OR
+                <hr class="w-10 border-gray-600">
+            </div>
+
+            <!-- Google Sign-in -->
+            <a href="#google-login"
+                class="flex items-center justify-center gap-2 bg-transparent border border-gray-600 hover:border-blue-400 text-gray-300 hover:text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 w-max mx-auto">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-4 h-4" alt="Google">
+                Continue with Google
+            </a>
+
+            <!-- Terms -->
+            <p class="text-gray-500 text-xs mt-4">
+                By signing up, you agree to our
+                <a href="#" class="text-blue-400 hover:underline">Terms</a> and
+                <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#0b132b] text-gray-400 py-10 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <!-- Brand -->
+            <div>
+                <h2 class="text-xl font-bold text-white mb-3">
+                    Trip<span class="text-blue-400">Track</span>
+                </h2>
+                <p class="text-sm mb-4">
+                    The smart way to manage group travel budgets and expenses.
+                </p>
+                <!-- Social Icons -->
+                <div class="flex space-x-4 text-gray-400">
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-linkedin text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Product</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">How
+                            It Works</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Features</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Company Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Company</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">About
+                            Us</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Demo</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legal Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Legal</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Terms
+                            of
+                            Service</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Privacy
+                            Policy</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Cookie
+                            Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 mt-8 pt-4 text-center text-xs text-gray-500">
+            © 2025 DebugKIngs. All rights reserved.
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            easing: 'ease-out',
+            once: true,
+            offset: 40
+        });
+    </script>
+
+    {% endblock %}
