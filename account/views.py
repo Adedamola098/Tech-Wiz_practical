@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegistrationForms, LoginForm, CustomRegistrationForm
+from django.contrib.auth.forms import PasswordResetForm
+
 
 # Registration view using CustomRegistrationForm
 def register(request):
@@ -49,3 +51,15 @@ def user_logout(request):
 # Dashboard view
 def dashboard(request):
     return render(request, 'account/dashboard.html')  # Ensure this template exists and renders a dashboard
+
+def password_reset_view(request):
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            form.save(request=request)
+            print("Password reset email sent.")  # This will print if the form is valid
+            return redirect('password_reset_done')
+    else:
+        form = PasswordResetForm()
+
+    return render(request, 'account/password_reset_form.html', {'form': form})
