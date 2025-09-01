@@ -93,10 +93,10 @@
 
     <!-- Navigation Links -->
     <ul class="hidden md:flex space-x-8 font-medium">
-      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
-      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">About</li>
-      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
-      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
+      <a href="{% url 'home' %}" class="hover:text-blue-400 cursor-pointer" >Home</a>
+      <a href="{% url 'about' %}" class="hover:text-blue-400 cursor-pointer" >About</a>
+      <a class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</a>
+      <a href="{% url 'contact' %}" class="hover:text-blue-400 cursor-pointer" >Contact</a>
     </ul>
 
     <!-- Buttons with Icons -->
