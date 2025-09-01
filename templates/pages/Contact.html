@@ -1,0 +1,296 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Contact - TripTrack</title>
+</head>
+
+<body class="hero-gradient-dark text-white">
+
+    <!-- ✅ Navbar (Copied from Home Page) -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-50 bg-[#0b132b] flex justify-between items-center px-10 py-3 border-b border-gray-700">
+        <div class="flex items-center space-x-2">
+            <img src="{% static 'src/images/logo.jpg' %}" alt="Logo" class="h-8 w-8">
+            <span class="text-xl font-bold">Travel Smart</span>
+        </div>
+
+        <ul class="hidden md:flex space-x-8 font-medium">
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
+            <li class="text-blue-400 cursor-pointer font-semibold">About</li>
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
+            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
+        </ul>
+
+        <div class="flex items-center space-x-3">
+            <button
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 text-black hover:bg-yellow-400 transition">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </button>
+        </div>
+    </nav>
+    <!-- Contact Landing Section -->
+    <!-- Contact Landing Section -->
+    <section
+        class="relative flex flex-col items-center justify-center text-center min-h-screen bg-gradient-to-br from-[#0b132b] via-[#0d1b2a] to-[#071021] px-6 overflow-hidden">
+
+        <!-- Static Tag -->
+        <div data-aos="fade-down"
+            class="px-5 py-2 bg-[#1b263b] text-blue-400 rounded-full text-xs font-medium mb-6 inline-flex items-center gap-2">
+            <i class="fas fa-paper-plane"></i> GET IN TOUCH
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-3" data-aos="fade-up" data-aos-delay="100">
+            <span class="block text-white">Let’s Connect</span>
+        </h1>
+        <h2 class="text-4xl md:text-6xl font-light text-blue-400 mb-5" data-aos="fade-up" data-aos-delay="200">
+            About Your Next Adventure
+        </h2>
+
+        <!-- Description -->
+        <p class="text-gray-400 max-w-xl mx-auto mb-8 text-base md:text-lg" data-aos="fade-up" data-aos-delay="300">
+            Our team is ready to help you plan your perfect trip. Reach out for questions, partnerships, or just to say
+            hello!
+        </p>
+
+        <!-- Main Button (Slimmer) -->
+        <a href="#contact-form" data-aos="zoom-in" data-aos-delay="400"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-sm md:text-base transition shadow-lg hover:scale-105">
+            Contact Us Now
+        </a>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 animate-bounce text-gray-400 text-2xl">
+            <i class="fas fa-mouse"></i>
+        </div>
+
+        <!-- Decorative Paper Planes -->
+        <div class="absolute top-20 left-[60%] text-yellow-500 opacity-50 text-3xl" data-aos="fade-left"
+            data-aos-delay="500">
+            <i class="fas fa-paper-plane"></i>
+        </div>
+        <div class="absolute bottom-10 right-[20%] text-green-400 opacity-50 text-2xl" data-aos="fade-right"
+            data-aos-delay="600">
+            <i class="fas fa-paper-plane"></i>
+        </div>
+        <div class="absolute top-1/3 left-[15%] text-blue-500 opacity-40 text-4xl" data-aos="zoom-in"
+            data-aos-delay="700">
+            <i class="fas fa-paper-plane"></i>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="bg-[#0d1b2a] text-white py-16">
+        <div class="max-w-3xl mx-auto px-6 text-center" data-aos="fade-up">
+            <!-- Heading -->
+            <h2 class="text-3xl md:text-4xl font-bold mb-3">Send Us a Message</h2>
+            <p class="text-gray-400 mb-10 text-sm md:text-base">
+                Have questions about trip planning or need support? Fill out the form below.
+            </p>
+
+            <!-- Form -->
+            <form action="#" method="POST" class="bg-[#0b1622] p-8 rounded-xl shadow-lg space-y-6">
+
+                <!-- Name and Email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex items-center bg-[#0d1b2a] border border-gray-700 rounded-lg px-4">
+                        <i class="fas fa-user text-gray-400 mr-3"></i>
+                        <input type="text" placeholder="Your name"
+                            class="bg-transparent w-full py-3 outline-none text-gray-300 placeholder-gray-500" />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex items-center bg-[#0d1b2a] border border-gray-700 rounded-lg px-4">
+                        <i class="fas fa-envelope text-gray-400 mr-3"></i>
+                        <input type="email" placeholder="your@email.com"
+                            class="bg-transparent w-full py-3 outline-none text-gray-300 placeholder-gray-500" />
+                    </div>
+                </div>
+
+                <!-- Subject -->
+                <div class="flex items-center bg-[#0d1b2a] border border-gray-700 rounded-lg px-4">
+                    <i class="fas fa-edit text-gray-400 mr-3"></i>
+                    <input type="text" placeholder="How can we help?"
+                        class="bg-transparent w-full py-3 outline-none text-gray-300 placeholder-gray-500" />
+                </div>
+
+                <!-- Message -->
+                <div class="bg-[#0d1b2a] border border-gray-700 rounded-lg px-4">
+                    <textarea rows="4" placeholder="Tell us about your trip planning needs..."
+                        class="bg-transparent w-full py-3 outline-none text-gray-300 placeholder-gray-500 resize-none"></textarea>
+                </div>
+
+                <!-- Button -->
+                <div>
+                    <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-semibold text-sm transition">
+                        Send Message
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-blue-600 text-white py-14 px-6 text-center">
+        <div class="max-w-2xl mx-auto" data-aos="fade-up">
+
+            <!-- Heading -->
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">
+                Stay Updated with TripTrack
+            </h2>
+            <p class="text-white/80 mb-6 text-sm md:text-base">
+                Subscribe to our newsletter for travel tips, product updates, and special offers.
+            </p>
+
+            <!-- Subscription Form -->
+            <form action="#" method="POST" class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+                <input type="email" placeholder="Your email address"
+                    class="w-full sm:w-auto flex-1 px-4 py-3 rounded-md outline-none border border-white/30 bg-transparent text-white placeholder-white/70 focus:border-white transition" />
+
+                <button type="submit"
+                    class="bg-white text-blue-600 font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition">
+                    Subscribe
+                </button>
+            </form>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center gap-4">
+                <!-- Twitter -->
+                <a href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <i class="fab fa-twitter text-white"></i>
+                </a>
+                <!-- Facebook -->
+                <a href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <i class="fab fa-facebook-f text-white"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <i class="fab fa-instagram text-white"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <i class="fab fa-linkedin-in text-white"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#0b132b] text-gray-400 py-10 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <!-- Brand -->
+            <div>
+                <h2 class="text-xl font-bold text-white mb-3">
+                    Trip<span class="text-blue-400">Track</span>
+                </h2>
+                <p class="text-sm mb-4">
+                    The smart way to manage group travel budgets and expenses.
+                </p>
+                <!-- Social Icons -->
+                <div class="flex space-x-4 text-gray-400">
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+                        <i class="fab fa-linkedin text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Product</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">How
+                            It Works</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Features</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Company Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Company</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">About
+                            Us</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Demo</a>
+                    </li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legal Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-3">Legal</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Terms
+                            of
+                            Service</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Privacy
+                            Policy</a></li>
+                    <li><a href="#"
+                            class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Cookie
+                            Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 mt-8 pt-4 text-center text-xs text-gray-500">
+            © 2025 DebugKIngs. All rights reserved.
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            easing: 'ease-out',
+            once: true,
+            offset: 40
+        });
+    </script>
+
+    {% endblock %}
