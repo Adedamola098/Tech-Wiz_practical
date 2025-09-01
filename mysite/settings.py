@@ -25,7 +25,21 @@ SECRET_KEY = 'django-insecure-f!id$lwaozy1mr@y+)8kw%xn&_9nr&%j_urlml3ffs&=daa46b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# SendGrid SMTP settings
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'  # SendGrid uses 'apikey' as the username
+EMAIL_HOST_PASSWORD = 'your_sendgrid_api_key'  # Use your actual SendGrid API key here
+DEFAULT_FROM_EMAIL = 'your-email@example.com'  # Replace with your email address
+
+
 ALLOWED_HOSTS = []
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 
 # Application definition

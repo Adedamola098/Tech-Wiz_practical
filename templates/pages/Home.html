@@ -1,9 +1,638 @@
 {% extends 'Base.html' %}
 {% load static %}
-
-{% block title %}Tech {% endblock %}
 {% block main %}
-<h1 class="hh">
-    
-</h1>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <title>{% block title %}Tech-Wiz{% endblock %}</title>
+  <style>
+    .swiper-pagination-bullet {
+      background: #60a5fa;
+      opacity: .45;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .hero-gradient-dark {
+      background: radial-gradient(circle at 20% 20%, #0e1a35, #071021);
+    }
+
+    .circle-img {
+      position: absolute;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .img1 {
+      top: 15%;
+      left: 55%;
+      width: 190px;
+      height: 190px;
+    }
+
+    .img2 {
+      top: 85px;
+      right: 6%;
+      width: 220px;
+      height: 220px;
+    }
+
+    .img3 {
+      bottom: 9%;
+      left: 50%;
+      width: 210px;
+      height: 210px;
+    }
+
+    .img4 {
+      bottom: 0;
+      top: 62%;
+      left: 78%;
+      right: 11%;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<!-- Swiper JS -->
+<script>
+  AOS.init({
+    duration: 900,
+    easing: 'ease-out',
+    once: true,
+    offset: 40
+  });
+</script>
+
+<body class="hero-gradient-dark text-white transition-colors duration-500">
+
+  <!-- Navbar -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <nav id="navbar"
+    class="fixed top-0 left-0 w-full z-50 bg-[#0b132b] flex justify-between items-center px-10 py-3 border-b border-gray-700">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      {% load static %}
+      <img src="{% static 'src/images/logo.jpg' %}" alt="Logo" class="h-8 w-8">
+      <span class="text-xl font-bold">Travel Smart</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="hidden md:flex space-x-8 font-medium">
+      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
+      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">About</li>
+      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
+      <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
+    </ul>
+
+    <!-- Buttons with Icons -->
+    <div class="flex items-center space-x-3">
+      <a href="{% url 'login' %}"
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 text-black hover:bg-yellow-400 transition">
+        <i class="fas fa-sign-in-alt"></i>
+        Login
+    </a>
+      <button
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
+        <i class="fas fa-user-plus"></i>
+        Sign Up
+      </button>
+    </div>
+  </nav>
+
+
+
+
+  <!-- Hero Section -->
+  <section data-aos="fade-up"
+    class="relative flex flex-col md:flex-row items-center justify-between px-10 py-16 md:py-[16vh] min-h-screen pt-32">
+    <!-- Left Part -->
+    <div class="max-w-xl z-10">
+      <div class="flex items-center space-x-2 mb-4">
+        <i class="fas fa-plane text-blue-400"></i>
+        <span class="text-blue-400 font-semibold">Smart Travel Companion</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+        Plan, Share & Track<br>
+        <span class="text-blue-400">Group Trips Effortlessly</span>
+      </h1>
+      <p class="text-lg mb-6 text-gray-300">
+        TripCoin simplifies group travel with AI-powered budgeting, expense splitting,
+        and collaborative planning—so you can focus on the adventure.
+      </p>
+
+      <!-- Features -->
+      <div class="flex flex-wrap gap-6 mb-8 text-sm">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-wallet text-green-400"></i><span>Expense Tracking</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-chart-pie text-yellow-400"></i><span>Budget Analytics</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-lightbulb text-green-300"></i><span>AI Assistant</span>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex space-x-4">
+        <a href="#"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold flex items-center space-x-2 transition duration-300 transform hover:scale-105 cursor-pointer">
+          <i class="fas fa-play"></i>
+          <span>Get Started</span>
+        </a>
+        <a href="/templates/pages/Contact.html"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold flex items-center space-x-2 transition duration-300 transform hover:scale-105 cursor-pointer">
+          <i class="fas fa-envelope"></i>
+          <span>Contact Us</span>
+        </a>
+      </div>
+
+      <!-- Right Images -->
+      <div class="hidden md:block absolute inset-0" data-aos="zoom-in">
+        <div class="circle-img img1" data-aos="zoom-in" data-aos-delay="100">
+          <img src="{% static 'src/images/bg3.jpg' %}" class="w-full h-full object-cover" alt="">
+        </div>
+        <div class="circle-img img2" data-aos="zoom-in" data-aos-delay="150">
+          <img src="{% static 'src/images/bg4.jpg' %}" class="w-full h-full object-cover" alt="">
+        </div>
+        <div class="circle-img img3" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{% static 'src/images/g1.jpg' %}" class="w-full h-full object-cover" alt="">
+        </div>
+        <div class="circle-img img4" data-aos="zoom-in" data-aos-delay="250">
+          <img src="{% static 'src/images/bg2.jpg' %}" class="w-full h-full object-cover" alt="">
+        </div>
+      </div>
+  </section>
+  <section data-aos="zoom-in" class="bg-[#0d1b2a] py-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <!-- Heading -->
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+        Travel Together, <span class="text-blue-500">Split Smartly</span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-12">
+        TripTrack eliminates the hassle of group travel finances with automatic expense splitting,
+        real-time budget tracking, and AI-powered insights—so you can focus on making memories.
+      </p>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <div class="bg-[#0b1622] p-8 rounded-xl shadow-lg text-center hover:scale-105 transform transition">
+          <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-6">
+            <i class="fas fa-compass text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Plan with Confidence</h3>
+          <p class="text-gray-400 text-sm">Set budgets, track spending, and avoid surprises</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-[#0b1622] p-8 rounded-xl shadow-lg text-center hover:scale-105 transform transition">
+          <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-6">
+            <i class="fas fa-users text-yellow-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Split Fairly</h3>
+          <p class="text-gray-400 text-sm">Automatically calculate who owes what—no spreadsheets needed</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-[#0b1622] p-8 rounded-xl shadow-lg text-center hover:scale-105 transform transition">
+          <div class="flex justify-center items-center w-14 h-14 mx-auto bg-[#0d1b2a] rounded-full mb-6">
+            <i class="fas fa-peace text-green-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Travel Stress-Free</h3>
+          <p class="text-gray-400 text-sm">Our AI handles the math so you can enjoy the journey</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How Trips works Start -->
+  <section class="bg-[#0d1b2a] text-white py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-4">
+        How <span class="text-blue-500">TripTrack</span> Works
+      </h2>
+      <p class="text-center text-gray-400 max-w-2xl mx-auto mb-12">
+        From planning to payment, we've automated the stressful parts of group travel.
+      </p>
+
+      <!-- Steps row -->
+      <div class="relative max-w-4xl mx-auto py-6">
+        <!-- center line -->
+        <div class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-gray-600"></div>
+
+        <div class="relative flex justify-between items-center">
+          <!-- Step 1 -->
+          <button type="button"
+            class="step group flex flex-col items-center cursor-pointer select-none focus:outline-none focus:ring-0"
+            data-step="1">
+            <div class="icon w-16 h-16 rounded-full bg-white text-blue-500 flex items-center justify-center
+                      transition-transform duration-300 group-hover:scale-110">
+              <i class="fa-solid fa-map text-2xl"></i>
+            </div>
+            <p class="mt-3 font-semibold text-lg">Create Your Trip</p>
+            <p class="text-gray-400 text-sm w-44 text-center">
+              Set destinations, dates, and budget in seconds
+            </p>
+          </button>
+
+          <!-- Step 2 -->
+          <button type="button"
+            class="step group flex flex-col items-center cursor-pointer select-none focus:outline-none focus:ring-0"
+            data-step="2">
+            <div class="icon w-16 h-16 rounded-full bg-white text-purple-500 flex items-center justify-center
+                      transition-transform duration-300 group-hover:scale-110">
+              <i class="fa-solid fa-wallet text-2xl"></i>
+            </div>
+            <p class="mt-3 font-semibold text-lg">Create Expenses</p>
+            <p class="text-gray-400 text-sm w-44 text-center">
+              Add costs and ask AI to calculate total expenses
+            </p>
+          </button>
+
+          <!-- Step 3 -->
+          <button type="button"
+            class="step group flex flex-col items-center cursor-pointer select-none focus:outline-none focus:ring-0"
+            data-step="3">
+            <div class="icon w-16 h-16 rounded-full bg-white text-green-500 flex items-center justify-center
+                      transition-transform duration-300 group-hover:scale-110">
+              <i class="fa-solid fa-handshake text-2xl"></i>
+            </div>
+            <p class="mt-3 font-semibold text-lg">Settle Up</p>
+            <p class="text-gray-400 text-sm w-44 text-center">
+              Get crystal-clear 'who owes who' calculations
+            </p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Context / detail panel -->
+      <div class="mt-10 max-w-5xl mx-auto">
+        <!-- Trip -->
+        <div id="context-1" class="context">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center border border-gray-700 rounded-lg p-6">
+            <div>
+              <h3 class="text-2xl font-bold mb-3 text-blue-500">Create Your Trip →</h3>
+              <p class="text-gray-300">
+                Set destinations, dates, and budgets in seconds. Invite friends and keep everyone aligned.
+              </p>
+            </div>
+            <img src="{% static 'src/images\ai.PNG' %}" class="w-full h-auto rounded-lg shadow-lg object-cover"
+              alt="Create Trip">
+          </div>
+        </div>
+
+        <!-- Expenses -->
+        <div id="context-2" class="context hidden opacity-0">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center border border-gray-700 rounded-lg p-6">
+            <div>
+              <h3 class="text-2xl font-bold mb-3 text-purple-500">Create Expenses →</h3>
+              <p class="text-gray-300">
+                Snap receipts or add expenses manually. TripTrack auto-categorizes and logs everything for you.
+              </p>
+            </div>
+            <img src="{% static 'src/images\ai.PNG' %}" class="w-full h-auto rounded-lg shadow-lg object-cover"
+              alt="Create Expenses">
+          </div>
+        </div>
+
+        <!-- Settle Icon -->
+        <div id="context-3" class="context hidden opacity-0">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center border border-gray-700 rounded-lg p-6">
+            <div>
+              <h3 class="text-2xl font-bold mb-3 text-green-500">Settle Up →</h3>
+              <p class="text-gray-300">
+                Our algorithm calculates exact debts. Send payment reminders with one tap—no awkward chats.
+              </p>
+            </div>
+            <img src="{% static 'src/images\ai.PNG' %}" class="w-full h-auto rounded-lg shadow-lg object-cover"
+              alt="Settle Up">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- TESTIMONIAL SECTION -->
+
+  <section class="bg-[#0d1b2a] text-white py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-4">
+        Loved by <span class="text-blue-500">Travelers</span>
+      </h2>
+      <p class="text-center text-gray-400 mb-12">
+        Join 5,000+ groups who plan stress-free trips
+      </p>
+
+      <!-- Swiper container -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div
+              class="bg-[#111b3c] p-8 rounded-2xl shadow-lg border border-gray-700 h-full flex flex-col justify-between">
+              <div>
+                <span class="text-blue-500 text-3xl mb-4 block">“</span>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                  TripTrack made splitting expenses seamless. No awkward money convos anymore – just vibes.
+                </p>
+              </div>
+              <div>
+                <p class="font-semibold">Tolu F.</p>
+                <p class="text-gray-500 text-sm mb-3">Accra Birthday Getaway</p>
+                <span class="inline-block px-3 py-1 bg-blue-900 text-blue-300 text-xs rounded-full">
+                  Zero money drama 🔥
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div
+              class="bg-[#111b3c] p-8 rounded-2xl shadow-lg border border-gray-700 h-full flex flex-col justify-between">
+              <div>
+                <span class="text-blue-500 text-3xl mb-4 block">“</span>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                  We used to argue over receipts. Now, everyone sees what they spent. Transparency = peace.
+                </p>
+              </div>
+              <div>
+                <p class="font-semibold">Jide M.</p>
+                <p class="text-gray-500 text-sm mb-3">Cape Town Bros Trip</p>
+                <span class="inline-block px-3 py-1 bg-blue-900 text-blue-300 text-xs rounded-full">
+                  100% expense clarity
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div
+              class="bg-[#111b3c] p-8 rounded-2xl shadow-lg border border-gray-700 h-full flex flex-col justify-between">
+              <div>
+                <span class="text-blue-500 text-3xl mb-4 block">“</span>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                  I love how TripTrack handles multi-currency. Planning from UK to Kenya was so smooth!
+                </p>
+              </div>
+              <div>
+                <p class="font-semibold">Chioma D.</p>
+                <p class="text-gray-500 text-sm mb-3">Naija-Kenya Wedding Crew</p>
+                <span class="inline-block px-3 py-1 bg-blue-900 text-blue-300 text-xs rounded-full">
+                  KSh managed flawlessly
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination dots -->
+        <div class="swiper-pagination mt-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-gradient-to-r from-[#0d1b2a] to-[#1b263b] text-center py-14 px-4">
+    <div class="max-w-xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
+        Ready to Travel <span class="text-blue-400">Stress-Free?</span>
+      </h2>
+      <p class="text-gray-300 mb-6 text-sm md:text-base">
+        Join thousands of travelers managing group expenses effortlessly
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mb-4">
+        <a href="#get-started"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
+          Get Started <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#login"
+          class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
+          I Have an Account
+        </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center justify-center gap-2 mb-4 text-gray-400 text-xs">
+        <hr class="w-10 border-gray-600"> OR
+        <hr class="w-10 border-gray-600">
+      </div>
+
+      <!-- Google Sign-in -->
+      <a href="#google-login"
+        class="flex items-center justify-center gap-2 bg-transparent border border-gray-600 hover:border-blue-400 text-gray-300 hover:text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 w-max mx-auto">
+        <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-4 h-4" alt="Google">
+        Continue with Google
+      </a>
+
+      <!-- Terms -->
+      <p class="text-gray-500 text-xs mt-4">
+        By signing up, you agree to our
+        <a href="#" class="text-blue-400 hover:underline">Terms</a> and
+        <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-[#0b132b] text-gray-400 py-10 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+      <!-- Brand -->
+      <div>
+        <h2 class="text-xl font-bold text-white mb-3">
+          Trip<span class="text-blue-400">Track</span>
+        </h2>
+        <p class="text-sm mb-4">
+          The smart way to manage group travel budgets and expenses.
+        </p>
+        <!-- Social Icons -->
+        <div class="flex space-x-4 text-gray-400">
+          <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+            <i class="fab fa-twitter text-lg"></i>
+          </a>
+          <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+            <i class="fab fa-instagram text-lg"></i>
+          </a>
+          <a href="#" class="hover:text-blue-400 transform hover:scale-110 transition duration-300">
+            <i class="fab fa-linkedin text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Product Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Product</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">How
+              It Works</a></li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Features</a>
+          </li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Testimonials</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Company</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">About Us</a>
+          </li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Demo</a></li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-3">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Terms of
+              Service</a></li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Privacy
+              Policy</a></li>
+          <li><a href="#"
+              class="hover:text-blue-400 transform hover:scale-105 transition duration-300 inline-block">Cookie
+              Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-xs text-gray-500">
+      © 2025 DebugKIngs. All rights reserved.
+    </div>
+  </footer>
+
+
+
+
+  <style>
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+      });
+      AOS.init({ duration: 900, easing: 'ease-out', once: true, offset: 40 });
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      easing: 'ease-out',
+      once: true,
+      offset: 40
+    });
+  </script>
+
+
+
+  <!-- Scripts -->
+  <script>
+    function changeStep(index) {
+      document.getElementById("step-text").innerHTML = `
+      <h3 class="text-xl font-bold text-blue-500 mb-4">${steps[index].title}</h3>
+      <p class="text-gray-300">${steps[index].desc}</p>
+    `;
+      document.getElementById("step-image").innerHTML = `
+      <img src="${steps[index].img}" alt="${steps[index].title}" class="w-full h-80 object-cover rounded-lg">
+    `;
+
+      document.querySelectorAll('button[id^="step-"]').forEach(btn => {
+        btn.classList.remove('active-step');
+        btn.classList.add('opacity-60');
+      });
+      document.getElementById(`step-${index}`).classList.remove('opacity-60');
+      document.getElementById(`step-${index}`).classList.add('active-step');
+    }
+    const steps = document.querySelectorAll('.step');
+    const contexts = {
+      1: document.getElementById('context-1'),
+      2: document.getElementById('context-2'),
+      3: document.getElementById('context-3')
+    };
+
+    let activeStep = 1; // Default context = step 1
+    const icons = Array.from(steps).map(s => s.querySelector('.icon'));
+
+    function showContext(idx) {
+      // Hide all
+      Object.values(contexts).forEach(el => {
+        if (!el.classList.contains('hidden')) {
+          el.classList.add('opacity-0');
+          setTimeout(() => el.classList.add('hidden'), 150);
+        }
+      });
+
+      // Show active
+      contexts[idx].classList.remove('hidden');
+      setTimeout(() => contexts[idx].classList.remove('opacity-0'), 10);
+
+      // Update icon scale
+      icons.forEach(i => i.classList.remove('scale-110'));
+      icons[idx - 1].classList.add('scale-110');
+    }
+
+    // Initialize
+    showContext(activeStep);
+
+    // Click changes context
+    steps.forEach(step => {
+      const idx = Number(step.dataset.step);
+      step.addEventListener('click', () => {
+        activeStep = idx;
+        showContext(activeStep);
+      });
+    });
+    function setActive(element) {
+      document.querySelectorAll("nav ul li").forEach(li => li.classList.remove("text-blue-400"));
+      element.classList.add("text-blue-400");
+    }
+  </script>
+</body>
+
+</html>
+
+
 {% endblock %}
