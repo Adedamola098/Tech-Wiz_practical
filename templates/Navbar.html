@@ -1,0 +1,12 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+
+{% block main %}
+<ul class="hidden md:flex space-x-8 font-medium">
+    <a href="{% url 'home' %}" class="hover:text-blue-400 cursor-pointer">Home</a>
+    <a href="{% url 'about' %}" class="hover:text-blue-400 cursor-pointer">About</a>
+    <a href="{% url 'contact' %}" class="hover:text-blue-400 cursor-pointer">Contact</a>
+</ul>
+
+{% endblock %}

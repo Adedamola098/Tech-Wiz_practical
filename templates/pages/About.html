@@ -22,13 +22,8 @@
             <img src="{% static '/src/images/logo.jpg' %}" alt="Logo" class="h-8 w-8">
             <span class="text-xl font-bold">Travel Smart</span>
         </div>
+  {% include 'Navbar.html' %}
 
-        <ul class="hidden md:flex space-x-8 font-medium">
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
-            <li class="text-blue-400 cursor-pointer font-semibold">About</li>
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
-        </ul>
 
         <div class="flex items-center space-x-3">
             <button
