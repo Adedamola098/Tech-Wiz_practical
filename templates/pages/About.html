@@ -13,7 +13,7 @@
     <title>About - TripTrack</title>
 </head>
 
-<body class="hero-gradient-dark text-white">
+<body class="hero-gradient-dark text-white ">
 
     <!--  Navbar -->
     <nav id="navbar"
@@ -22,29 +22,24 @@
             <img src="{% static '/src/images/logo.jpg' %}" alt="Logo" class="h-8 w-8">
             <span class="text-xl font-bold">Travel Smart</span>
         </div>
+  {% include 'Navbar.html' %}
 
-        <ul class="hidden md:flex space-x-8 font-medium">
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Home</li>
-            <li class="text-blue-400 cursor-pointer font-semibold">About</li>
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</li>
-            <li class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Contact</li>
-        </ul>
 
         <div class="flex items-center space-x-3">
-            <button
+            <a href="{% url 'login' %}"
                 class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 text-black hover:bg-yellow-400 transition">
                 <i class="fas fa-sign-in-alt"></i> Login
-            </button>
-            <button
+        </a>
+            <a href="{% url 'register' %}"
                 class="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
                 <i class="fas fa-user-plus"></i> Sign Up
-            </button>
+    </a>
         </div>
     </nav>
 
     <!-- About Hero Section -->
     <section
-        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 bg-gradient-to-br from-[#0b132b] to-[#1b263b]">
+        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 bg-[#0b132b]">
         <!-- Heading -->
         <h1 data-aos="fade-up" class="text-4xl md:text-5xl font-bold mb-4">
             Your Journey, <span class="text-blue-400">Simplified TripTrack</span>
@@ -94,7 +89,7 @@
         </a>
     </section>
 
-    <section class="bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white py-20 relative">
+    <section class="bg-[#0b132b] text-white py-20 relative">
         <div class="max-w-5xl mx-auto px-6">
             <!-- Header -->
             <div class="text-center mb-16" data-aos="fade-up">
@@ -191,7 +186,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="bg-gradient-to-b from-[#1b263b] to-[#0d1b2a] py-16">
+    <section class="bg-[#0b132b] py-16">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 
             <!-- Card 1 -->
@@ -220,7 +215,7 @@
 
 
     <!-- Problem & Solution Section -->
-    <section class="bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] py-16 text-white">
+    <section class="bg-[#0b132b] py-16 text-white">
         <div class="max-w-6xl mx-auto px-6 text-center">
 
             <!-- Label Button -->
@@ -236,7 +231,7 @@
                 The <span class="text-blue-400">Problem</span> & Our <span class="text-green-400">Solution</span>
             </h2>
             <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 max-w-2xl mx-auto mb-12">
-                Group travel should create memories, not financial stress. Here’s how we’re changing the game.
+                Group travel should create memories, not financial stress. Here`s how we`re changing the game.
             </p>
 
             <!-- Cards -->
@@ -537,7 +532,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-gradient-to-r from-[#0d1b2a] to-[#1b263b] text-center py-14 px-4">
+    <section class="bg-[#0b132b] text-center py-14 px-4">
         <div class="max-w-xl mx-auto">
             <!-- Heading -->
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -549,11 +544,11 @@
 
             <!-- Buttons -->
             <div class="flex flex-col sm:flex-row justify-center gap-3 mb-4">
-                <a href="#get-started"
+                <a href="{% url 'register' %}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
                     Get Started <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="#login"
+                <a href="{% url 'login' %}"
                     class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition duration-300 transform hover:scale-105">
                     I Have an Account
                 </a>

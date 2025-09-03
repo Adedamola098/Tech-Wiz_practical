@@ -92,12 +92,7 @@
     </div>
 
     <!-- Navigation Links -->
-    <ul class="hidden md:flex space-x-8 font-medium">
-      <a href="{% url 'home' %}" class="hover:text-blue-400 cursor-pointer" >Home</a>
-      <a href="{% url 'about' %}" class="hover:text-blue-400 cursor-pointer" >About</a>
-      <a class="hover:text-blue-400 cursor-pointer" onclick="setActive(this)">Demo</a>
-      <a href="{% url 'contact' %}" class="hover:text-blue-400 cursor-pointer" >Contact</a>
-    </ul>
+  {% include 'Navbar.html' %}
 
     <!-- Buttons with Icons -->
     <div class="flex items-center space-x-3">
@@ -105,12 +100,12 @@
         class="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-200 text-black hover:bg-yellow-400 transition">
         <i class="fas fa-sign-in-alt"></i>
         Login
-    </a>
-      <button
+      </a>
+      <a href="{% url 'register' %}"
         class="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition">
         <i class="fas fa-user-plus"></i>
         Sign Up
-      </button>
+    </a>
     </div>
   </nav>
 
