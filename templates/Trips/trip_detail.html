@@ -1,0 +1,15 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block main %}
+
+
+<!-- trip_detail.html -->
+<h1>{{ trip.title }}</h1>
+<p>Destination: {{ trip.destination }}</p>
+<p>Description: {{ trip.description }}</p>
+<p>Departure Date: {{ trip.departure_date }}</p>
+<p>Return Date: {{ trip.return_date }}</p>
+<p>Price: ${{ trip.price }}</p>
+
+
+{% endblock %}
