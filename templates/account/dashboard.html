@@ -1,66 +1,326 @@
-{% extends 'Base.html' %}
-{% load static %}
-{% block title %}Tech {% endblock %}
-
-{% block main %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trip Track - Dashboard (Tailwind)</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .sidebar { width: 260px; }
+    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(6px); }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen flex">
-
-  <!-- Sidebar -->
-  <aside class="w-64 bg-gray-800 flex flex-col p-4">
-    <div class="flex items-center space-x-2 mb-6">
-      <img src="https://surli.cc/kdzfri" alt="Logo" class="w-10 h-10">
-      <span class="text-xl font-bold text-purple-400">Hotel</span>
-    </div>
-    <nav class="flex-1 space-y-2">
-      <a href="#" class="block py-2 px-3 rounded-lg hover:bg-purple-600 hover:text-white transition">Dashboard</a>
-      <a href="#" class="block py-2 px-3 rounded-lg hover:bg-purple-600 hover:text-white transition">Bookings</a>
-      <a href="#" class="block py-2 px-3 rounded-lg hover:bg-purple-600 hover:text-white transition">Rooms</a>
-      <a href="#" class="block py-2 px-3 rounded-lg hover:bg-purple-600 hover:text-white transition">Customers</a>
-    </nav>
-    <button class="mt-auto py-2 px-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition">Logout</button>
-  </aside>
-
-  <!-- Main content -->
-  <div class="flex-1 flex flex-col">
-    <!-- Top bar -->
-    <header class="bg-gray-800 p-4 flex justify-between items-center">
-      <h1 class="text-2xl font-semibold text-purple-400">Dashboard</h1>
-      <div class="flex items-center space-x-3">
-        <span class="text-gray-300">Admin</span>
-        <img src="https://i.pravatar.cc/40" alt="Profile" class="w-10 h-10 rounded-full">
-      </div>
-    </header>
-
-    <!-- Page content -->
-    <main class="p-6 flex-1 overflow-y-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Example card -->
-        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
-          <h2 class="text-lg font-semibold text-purple-400 mb-2">Total Bookings</h2>
-          <p class="text-3xl font-bold">120</p>
-        </div>
-        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
-          <h2 class="text-lg font-semibold text-purple-400 mb-2">Available Rooms</h2>
-          <p class="text-3xl font-bold">45</p>
-        </div>
-        <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
-          <h2 class="text-lg font-semibold text-purple-400 mb-2">Revenue</h2>
-          <p class="text-3xl font-bold">$8,540</p>
+<body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-slate-200 font-sans">
+  <div class="flex h-screen overflow-hidden">
+    <!-- Sidebar (fixed height, no scroll) -->
+    <aside class="sidebar hidden md:flex flex-col gap-6 p-6 glass h-full text-slate-100 flex-shrink-0">
+           <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-emerald-400 to-teal-400 flex items-center justify-center text-slate-900 font-bold">TT</div>
+        <div>
+          <div class="font-semibold text-lg">Trip Track</div>
+          <div class="text-sm text-slate-300">Dashboard</div>
         </div>
       </div>
+
+      <nav class="flex-1 mt-6">
+        <ul class="space-y-1">
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gradient-to-r from-slate-700/50 to-slate-700/30">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+              <span class="text-sm">Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6M9 7V5a3 3 0 013-3h0a3 3 0 013 3v2"/></svg>
+              <span class="text-sm">Trips</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4"/></svg>
+              <span class="text-sm">Bookings</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2s3-.895 3-2s-1.343-2-3-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v6"/></svg>
+              <span class="text-sm">Billing</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="mt-auto">
+        <div class="text-xs text-slate-400">Status</div>
+        <div class="mt-2 flex items-center justify-between">
+          <div class="text-sm">Server Uptime</div>
+          <div class="text-sm font-medium text-emerald-300">99.98%</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content (scrollable only) -->
+    <main class="flex-1 p-6 overflow-y-auto">
+     <header class="flex items-center justify-between gap-4 mb-6">
+        <div class="flex items-center gap-4">
+          <h1 class="text-2xl font-semibold">Dashboard</h1>
+          <div class="hidden md:block text-slate-400">Overview of trips and bookings</div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="relative hidden sm:block">
+            <input class="bg-slate-800/60 placeholder-slate-400 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none" placeholder="Search trips, bookings..." />
+            <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+          </div>
+
+          <button class="flex items-center gap-2 bg-emerald-400 text-slate-900 px-3 py-2 rounded-full text-sm">+ New Trip</button>
+
+          <div class="flex items-center gap-3">
+            <div class="text-right hidden sm:block">
+              <div class="text-sm font-medium">Nikoleta N.</div>
+              <div class="text-xs text-slate-400">Admin</div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center font-semibold">NN</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Stats cards -->
+      <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400">Total Trips</div>
+              <div class="text-2xl font-semibold">1,246</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-700/40">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6M9 7V5a3 3 0 013-3h0a3 3 0 013 3v2"/></svg>
+            </div>
+          </div>
+          <div class="mt-3 text-sm text-slate-400">+12% since last month</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400">Active Bookings</div>
+              <div class="text-2xl font-semibold">327</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-700/40">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4"/></svg>
+            </div>
+          </div>
+          <div class="mt-3 text-sm text-slate-400">-3% since last week</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400">Revenue</div>
+              <div class="text-2xl font-semibold">$58,430</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-700/40">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2s3-.895 3-2s-1.343-2-3-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v6"/></svg>
+            </div>
+          </div>
+          <div class="mt-3 text-sm text-slate-400">+8% since yesterday</div>
+        </div>
+      </section>
+
+      <!-- Main grid: chart + table -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-2 p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-sm text-slate-400">Trips Over Time</div>
+              <div class="text-lg font-semibold">Last 30 days</div>
+            </div>
+            <div class="text-sm text-slate-400">Range: Aug 5 - Sep 3</div>
+          </div>
+
+          <!-- Fake chart (SVG sparkline) -->
+          <div class="w-full h-48 bg-slate-900/30 rounded-xl p-4">
+            <svg class="w-full h-full" viewBox="0 0 600 200" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.6" />
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0.04" />
+                </linearGradient>
+              </defs>
+              <path d="M0 120 C50 100 100 60 150 80 C200 100 250 40 300 60 C350 80 400 30 450 50 C500 70 550 40 600 60 L600 200 L0 200 Z" fill="url(#g1)" stroke="#06b6d4" stroke-width="2" fill-opacity="0.7"/>
+            </svg>
+          </div>
+
+          <div class="mt-4 grid grid-cols-3 gap-4 text-sm text-slate-400">
+            <div>Avg trip duration: <span class="text-slate-200 font-medium">4.2 days</span></div>
+            <div>Avg distance: <span class="text-slate-200 font-medium">320 km</span></div>
+            <div>Top route: <span class="text-slate-200 font-medium">Lagos → Abuja</span></div>
+          </div>
+        </div>
+
+        <aside class="p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-sm text-slate-400">Upcoming Trips</div>
+              <div class="text-lg font-semibold">Next 7 days</div>
+            </div>
+            <button class="text-sm text-slate-400 hover:text-white">See all</button>
+          </div>
+
+          <ul class="space-y-3">
+       <li class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-md bg-slate-700 flex items-center justify-center text-sm">AL</div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-medium">Alaba - Lekki</div>
+                  <div class="text-xs text-slate-400">Sep 5</div>
+                </div>
+                <div class="text-xs text-slate-400">Pickup 08:30 — 3 seats</div>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-md bg-slate-700 flex items-center justify-center text-sm">IB</div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-medium">Ikeja - Banana Island</div>
+                  <div class="text-xs text-slate-400">Sep 6</div>
+                </div>
+                <div class="text-xs text-slate-400">Pickup 12:00 — 2 seats</div>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-md bg-slate-700 flex items-center justify-center text-sm">AB</div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-medium">Abuja - Kaduna</div>
+                  <div class="text-xs text-slate-400">Sep 7</div>
+                </div>
+                <div class="text-xs text-slate-400">Pickup 06:00 — 4 seats</div>
+              </div>
+            </li>
+
+          </ul>
+        </aside>
+      </section>
+
+      <!-- Recent trips + Budget overview side by side -->
+      <section class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Recent Trips -->
+        <div class="lg:col-span-2 p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-sm text-slate-400">Recent Trips</div>
+              <div class="text-lg font-semibold">Latest bookings</div>
+            </div>
+            <div class="text-sm text-slate-400">Showing 1-5 of 1,246</div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-slate-400 text-xs uppercase tracking-wide">
+                <tr>
+                  <th class="py-3">Trip</th>
+                  <th class="py-3">Date</th>
+                  <th class="py-3">Passengers</th>
+                  <th class="py-3">Status</th>
+                  <th class="py-3">Fare</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-700">
+                 <tr class="hover:bg-slate-900/30">
+                <td class="py-3">Lagos → Ibadan</td>
+                <td class="py-3">Sep 2, 2025</td>
+                <td class="py-3">3</td>
+                <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-emerald-600/20 text-emerald-300">Completed</span></td>
+                <td class="py-3">$34</td>
+              </tr>
+
+              <tr class="hover:bg-slate-900/30">
+                <td class="py-3">Lekki → Victoria Island</td>
+                <td class="py-3">Sep 1, 2025</td>
+                <td class="py-3">1</td>
+                <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-amber-600/20 text-amber-300">Pending</span></td>
+                <td class="py-3">$12</td>
+              </tr>
+
+              <tr class="hover:bg-slate-900/30">
+                <td class="py-3">Abuja → Jos</td>
+                <td class="py-3">Aug 30, 2025</td>
+                <td class="py-3">2</td>
+                <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-sky-600/20 text-sky-300">In transit</span></td>
+                <td class="py-3">$48</td>
+              </tr>
+
+              <tr class="hover:bg-slate-900/30">
+                <td class="py-3">Enugu → Port Harcourt</td>
+                <td class="py-3">Aug 28, 2025</td>
+                <td class="py-3">4</td>
+                <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-rose-600/20 text-rose-300">Cancelled</span></td>
+                <td class="py-3">$65</td>
+              </tr>
+
+              <tr class="hover:bg-slate-900/30">
+                <td class="py-3">Kaduna → Kano</td>
+                <td class="py-3">Aug 25, 2025</td>
+                <td class="py-3">2</td>
+                <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-emerald-600/20 text-emerald-300">Completed</span></td>
+                <td class="py-3">$39</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Budget Overview -->
+        <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-800/20 border border-slate-700">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-sm text-slate-400">Budget Overview</div>
+              <div class="text-lg font-semibold">Spending Breakdown</div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <canvas id="budgetChart" class="max-w-[160px] mb-4"></canvas>
+            <ul class="space-y-2 text-sm w-full">
+              <li class="flex justify-between"><span>Fuel</span><span class="font-medium">$12,000</span></li>
+              <li class="flex justify-between"><span>Maintenance</span><span class="font-medium">$8,000</span></li>
+              <li class="flex justify-between"><span>Driver Salaries</span><span class="font-medium">$20,000</span></li>
+              <li class="flex justify-between"><span>Miscellaneous</span><span class="font-medium">$4,430</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+  
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-6 text-center text-xs text-slate-500">© 2025 Trip Track • Crafted with Tailwind CSS</footer>
     </main>
   </div>
 
+  <script>
+    const ctx = document.getElementById('budgetChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Fuel', 'Maintenance', 'Driver Salaries', 'Miscellaneous'],
+        datasets: [{
+          data: [12000, 8000, 20000, 4430],
+          backgroundColor: ['#10b981','#3b82f6','#f59e0b','#ef4444'],
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#e5e7eb' } } }
+      }
+    });
+  </script>
 </body>
 </html>
-
-
-{% endblock %}
