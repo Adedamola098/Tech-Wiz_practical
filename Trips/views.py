@@ -15,15 +15,22 @@ def trip_detail(request, pk):
     context = {
          'trip': trips
     }
-    return render(request, 'trips/trip_detail.html',)
+    return render(request, 'Trips/trip_detail.html', context)
+
+def trip(request):
+    trips = Trips.objects.all().order_by('depature_date')
+    context = {
+         'trip': trips
+    }
+    return render (request, 'Trips/trips.html', context )
 
 def create_trip(request):
     if request.method == 'POST':
         form = TripForms(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('trip_list')  # Redirect to the list after creating a new trip
+            return redirect('trip')  # Redirect to the list after creating a new trip
     else:
         form = TripForms()
 
-    return render(request, 'trips/create_trip.html', {'form': form})
+    return render(request, 'Trips/create_trip.html', {'form': form})

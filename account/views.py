@@ -63,3 +63,4 @@ def password_reset_view(request):
         form = PasswordResetForm()
 
     return render(request, 'account/password_reset_form.html', {'form': form})
+

@@ -1,10 +1,38 @@
- <!-- create_trip.html -->
-<h1>Create a New Trip</h1>
+<!-- create_trip.html -->
+<!doctype html>
+<html lang="en">
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Trip</button>
-</form>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create a New Trip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-<a href="{% url 'trip_list' %}">Cancel</a>
+<body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-slate-200 font-sans">
+    <div class="flex justify-center items-center min-h-screen p-6">
+        <div class="w-full max-w-lg bg-black p-6 rounded-xl shadow-lg glass">
+            <!-- Header -->
+            <h1 class="text-3xl font-semibold text-center text-emerald-400 mb-6">Create a New Trip</h1>
+
+            <!-- Form -->
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+                <!-- Form Fields -->
+                {{ form.as_p }}
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full py-2 bg-emerald-500 text-black rounded-full text-lg font-medium hover:bg-emerald-400 transition duration-300">Create Trip</button>
+            </form>
+
+            <!-- Cancel Link -->
+            <div class="text-center mt-4">
+                <a href="{% url 'trip_list' %}"
+                    class="text-sm text-slate-400 hover:text-emerald-300 hover:underline transition duration-300">Cancel</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
