@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'pages',
     'user',
     'account',
+    'Trips',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,16 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block main %}
+<!-- trip_list.html -->
+<h1>Trips</h1>
+
+<ul>
+    {% for trip in trips %}
+        <li>
+            <a href="{% url 'trip_detail' pk=trip.pk %}">
+                {{ trip.title }} - {{ trip.destination }} - {{ trip.departure_date }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
