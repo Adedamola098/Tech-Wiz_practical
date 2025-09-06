@@ -1,0 +1,35 @@
+{% extends 'Base.html' %}
+{% block main %}
+
+<div class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-slate-200 font-sans py-6">
+    <div class="max-w-3xl mx-auto bg-black p-8 rounded-xl shadow-lg glass">
+        <h1 class="text-4xl font-semibold text-center text-emerald-400 mb-6">User Profile</h1>
+        
+        <div class="space-y-6">
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Username</div>
+                <div class="text-lg font-medium">{{ username }}</div>
+            </div>
+
+            <!-- Additional User Information -->
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Email</div>
+                <div class="text-lg font-medium">{{ request.user.email }}</div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Date Joined</div>
+                <div class="text-lg font-medium">{{ request.user.date_joined }}</div>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-8 flex justify-between">
+            <a href="{% url 'edit_profile' %}" class="w-full sm:w-auto text-center bg-yellow-500 text-black py-2 rounded-full font-medium hover:bg-yellow-400 transition duration-300">
+                Edit Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

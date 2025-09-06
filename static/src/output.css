@@ -566,9 +566,6 @@
   .max-w-\[160px\] {
     max-width: 160px;
   }
-  .max-w-lg {
-    max-width: var(--container-lg);
-  }
   .max-w-md {
     max-width: var(--container-md);
   }

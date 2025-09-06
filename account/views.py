@@ -64,3 +64,7 @@ def password_reset_view(request):
 
     return render(request, 'account/password_reset_form.html', {'form': form})
 
+def current_user_profile(request):
+    # Get the username of the currently logged-in user
+    username = request.user.username  # `request.user` gives the current logged-in user
+    return render(request, 'user_profile.html', {'username': username})
