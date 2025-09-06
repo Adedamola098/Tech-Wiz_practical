@@ -1,46 +1,61 @@
-from django.shortcuts import redirect, render
-from .models import Trips
-from .forms import TripForms
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from .models import Trips
+from .forms import TripForm
 
-# Create your views here.
-def Trip_list(request):
+# View for listing all trips
+def trip_list(request):
     trips = Trips.objects.all().order_by('depature_date')
     context = {
-        "trips" : trips
+        "trips": trips
     }
-    return render(request, 'Trips/Create-Trip.html', context)
+    return render(request, 'Trips/trip_list.html', context)
 
+# View for displaying details of a single trip
 def trip_detail(request, pk):
-    trips = Trips.objects.get(pk=pk)
+    trip = Trips.objects.get(pk=pk)
     context = {
-         'trip': trips
+        'trip': trip
     }
     return render(request, 'Trips/trip_detail.html', context)
 
-def trip(request):
-    trips = Trips.objects.all().order_by('depature_date')
-    context = {
-         'trip': trips
-    }
-    return render (request, 'Trips/trips.html', context )
-
+# View for creating a new trip
 def create_trip(request):
     if request.method == 'POST':
-        # Log the form data to check if it's being sent correctly
-        print(request.POST)
-
-        # Using the TripForm ModelForm to handle validation and saving
-        form = TripForms(request.POST)
+        form = TripForm(request.POST, request.FILES)  # Handle file uploads
         if form.is_valid():
             form.save()  # Save the trip to the database
-            messages.success(request, "Trip created successfully!")  # Flash success message
-            return redirect('trip_list')  # Redirect to the trip list
+            messages.success(request, "Trip created successfully!")  # Success message
+            return redirect('trip')  # Redirect to the trip list page
         else:
-            # Log the errors if the form is invalid
-            print(form.errors)
-
+            print(form.errors)  # Print any form errors to the console
     else:
-        form = TripForms()
+        form = TripForm()
 
-    return render(request, 'trips/create_trip.html', {'form': form})
+    return render(request, 'Trips/create_trip.html', {'form': form})
+
+def trip_delete(request, pk):
+    trip = get_object_or_404(Trips, pk=pk)  # Fetch the trip by its primary key
+    trip.delete()  # Delete the trip from the database
+    messages.success(request, "Trip deleted successfully!")  # Success message
+    return redirect('trip')  # Redirect to the trip list after deletion
+
+
+def trip_edit(request, pk):
+    # Fetch the trip using the primary key (pk)
+    trip = get_object_or_404(Trips, pk=pk)
+
+    if request.method == 'POST':
+        form = TripForm(request.POST, request.FILES, instance=trip)
+        if form.is_valid():
+            form.save()  # Save the updated trip details to the database
+            messages.success(request, "Trip updated successfully!")  # Show a success message
+            return redirect('trip_detail', pk=trip.pk)  # Redirect to the trip detail page after successful update
+        else:
+            # Log the form errors to the console for debugging
+            print(form.errors)
+    else:
+        # When the form is accessed via GET request, populate it with the existing trip data
+        form = TripForm(instance=trip)
+
+    return render(request, 'Trips/edit_trip.html', {'form': form})

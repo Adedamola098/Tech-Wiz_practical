@@ -2,15 +2,75 @@
 {% load static %}
 {% block main %}
 <!-- trip_list.html -->
-<h1>Trips</h1>
+<h1 class="text-3xl font-semibold text-center text-emerald-400 mb-6">My Trips</h1>
 
-<ul>
+<!-- Trip Filter Section -->
+<section class="mb-6 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+    <div class="flex gap-3">
+        <select class="bg-slate-800/60 text-sm rounded-full px-4 py-2 focus:outline-none">
+            <option>Status: All</option>
+            <option>Completed</option>
+            <option>Pending</option>
+            <option>In transit</option>
+            <option>Cancelled</option>
+        </select>
+        <select class="bg-slate-800/60 text-sm rounded-full px-4 py-2 focus:outline-none">
+            <option>Date: All</option>
+            <option>This week</option>
+            <option>This month</option>
+            <option>Last month</option>
+        </select>
+    </div>
+    <div class="relative w-full sm:w-64">
+        <input
+            class="bg-slate-800/60 placeholder-slate-400 rounded-full pl-10 pr-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            placeholder="Search trips..." />
+        <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+    </div>
+</section>
+
+<!-- Trip Cards Section -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for trip in trips %}
-        <li>
-            <a href="{% url 'trip_detail' pk=trip.pk %}">
-                {{ trip.title }} - {{ trip.destination }} - {{ trip.departure_date }}
-            </a>
-        </li>
+    <div class="relative bg-cover bg-center rounded-xl overflow-hidden"
+        style="background-image: url('https://source.unsplash.com/1600x900/?road,car');">
+        <div class="overlay absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 py-20">
+            <h2 class="text-3xl font-semibold text-emerald-400">{{ trip.title }}</h2>
+            <p class="text-lg text-slate-300 mb-2">{{ trip.destination }}</p>
+            <p class="text-md text-slate-200 mb-4">Departure: {{ trip.depature_date }}</p>
+            <p class="text-md text-slate-200 mb-4">budget: {{ trip.budget }}</p>
+
+
+            <!-- Actions -->
+            <div class="absolute top-4 right-4 z-20 p-2 bg-emerald-500 hover:bg-emerald-400 rounded-full">
+                <a href="{% url 'trip_detail' pk=trip.pk %}">
+                    <button
+                        class="px-4 py-2 text-white font-semibold rounded-full bg-emerald-500 hover:bg-emerald-400 transition duration-300">
+                        View Trip
+                    </button>
+                </a>
+            </div>
+
+
+            <!-- Delete Button -->
+            <form action="{% url 'trip_delete' pk=trip.pk %}" method="POST" class="absolute bottom-6 right-6 z-20">
+                {% csrf_token %}
+                <button type="submit" class="p-3 bg-rose-600 hover:bg-rose-500 text-white rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</section>
+
 {% endblock %}

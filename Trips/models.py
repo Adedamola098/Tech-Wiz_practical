@@ -1,14 +1,13 @@
 from django.db import models
 
-# Create your models here.
+# Trip model with necessary fields
 class Trips(models.Model):
-    title = models.TextField(max_length=100)
-    destination = models.TextField(max_length=200)
-    depature_date = models.DateField()
-    return_date = models.DateField()
-    Budget = models.PositiveIntegerField(default=0)
-    image = models.ImageField(null=True, blank=True, upload_to="media" )
-    
+    title = models.CharField(max_length=100)  # Changed TextField to CharField for titles
+    destination = models.CharField(max_length=200)  # Changed TextField to CharField for destinations
+    depature_date = models.DateField()  # Date of departure
+    return_date = models.DateField()  # Date of return
+    budget = models.PositiveIntegerField(default=0)  # Trip budget
+    image = models.ImageField(null=True, blank=True, upload_to="media/trip_images/")  # Store images in 'media/trip_images/'
 
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title  # Return the title when querying the trip

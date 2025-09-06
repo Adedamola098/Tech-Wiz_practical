@@ -1,0 +1,58 @@
+{% extends 'Base.html' %}
+{% block main %}
+
+<h1 class="text-3xl font-semibold text-center text-emerald-400 mb-6">Edit Trip</h1>
+
+<form method="POST" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+    <!-- Title -->
+    <div>
+        <label for="title" class="block text-lg font-medium text-slate-300">Trip Title</label>
+        <input type="text" id="title" name="title" value="{{ form.title.value }}" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Enter the trip title" required>
+    </div>
+
+    <!-- Destination -->
+    <div>
+        <label for="destination" class="block text-lg font-medium text-slate-300">Destination</label>
+        <input type="text" id="destination" name="destination" value="{{ form.destination.value }}" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Where is this trip going?" required>
+    </div>
+
+    <!-- Departure Date -->
+    <div>
+        <label for="depature_date" class="block text-lg font-medium text-slate-300">Departure Date</label>
+        <input type="date" id="depature_date" name="depature_date" value="{{ form.depature_date.value }}" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+    </div>
+
+    <!-- Return Date -->
+    <div>
+        <label for="return_date" class="block text-lg font-medium text-slate-300">Return Date</label>
+        <input type="date" id="return_date" name="return_date" value="{{ form.return_date.value }}" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+    </div>
+
+    <!-- Budget -->
+    <div>
+        <label for="budget" class="block text-lg font-medium text-slate-300">Budget</label>
+        <input type="number" id="budget" name="budget" value="{{ form.budget.value }}" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Enter the budget" required>
+    </div>
+
+    <!-- Image -->
+    <div>
+        <label for="image" class="block text-lg font-medium text-slate-300">Upload Image</label>
+        <input type="file" id="image" name="image" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+        {% if trip.image %}
+            <img src="{{ trip.image.url }}" alt="Current Trip Image" class="w-32 mt-4 rounded-lg">
+        {% endif %}
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+        <button type="submit" class="w-full py-2 bg-emerald-500 text-black rounded-full text-lg font-medium hover:bg-emerald-400 transition duration-300">Save Changes</button>
+    </div>
+</form>
+
+<!-- Cancel Link -->
+<div class="text-center mt-4">
+    <a href="{% url 'trip' %}" class="text-sm text-slate-400 hover:text-emerald-300 hover:underline transition duration-300">Cancel</a>
+</div>
+
+{% endblock %}

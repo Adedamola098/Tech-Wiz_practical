@@ -2,14 +2,63 @@
 {% load static %}
 {% block main %}
 
-
 <!-- trip_detail.html -->
-<h1>{{ trip.title }}</h1>
-<p>Destination: {{ trip.destination }}</p>
-<p>Description: {{ trip.description }}</p>
-<p>Departure Date: {{ trip.departure_date }}</p>
-<p>Return Date: {{ trip.return_date }}</p>
-<p>Price: ${{ trip.price }}</p>
+<div class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-slate-200 font-sans py-6">
 
+    <!-- Trip Information -->
+    <div class="max-w-3xl mx-auto bg-black p-8 rounded-xl shadow-lg glass">
+        <h1 class="text-4xl font-semibold text-center text-emerald-400 mb-6">{{ trip.title }}</h1>
+        
+        <div class="space-y-6">
+            <!-- Trip Details -->
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Destination</div>
+                <div class="text-lg font-medium">{{ trip.destination }}</div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Description</div>
+                <div class="text-lg font-medium">{{ trip.description }}</div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Departure Date</div>
+                <div class="text-lg font-medium">{{ trip.depature_date }}</div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Return Date</div>
+                <div class="text-lg font-medium">{{ trip.return_date }}</div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div class="text-lg text-slate-300">Price</div>
+                <div class="text-lg font-medium">${{ trip.price }}</div>
+            </div>
+
+            <!-- Trip Image -->
+            {% if trip.image %}
+                <div class="mt-6">
+                    <img src="{{ trip.image.url }}" alt="Trip Image" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+            {% else %}
+                <div class="mt-6 text-center text-slate-500">
+                    <p>No image available for this trip.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex justify-between">
+            <a href="{% url 'trip' %}" class="w-full sm:w-auto text-center bg-emerald-500 text-black py-2 rounded-full font-medium hover:bg-emerald-400 transition duration-300">
+                Back to Trip List
+            </a>
+            <a href="{% url 'trip_edit' pk=trip.pk %}" class="w-full sm:w-auto text-center bg-yellow-500 text-black py-2 rounded-full font-medium hover:bg-yellow-400 transition duration-300">
+                Edit Trip
+            </a>
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}
