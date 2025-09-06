@@ -1,4 +1,3 @@
-<!-- create_trip.html -->
 <!doctype html>
 <html lang="en">
 
@@ -11,25 +10,60 @@
 
 <body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-slate-200 font-sans">
     <div class="flex justify-center items-center min-h-screen p-6">
-        <div class="w-full max-w-lg bg-black p-6 rounded-xl shadow-lg glass">
+        <div class="w-full max-w-lg bg-black p-8 rounded-xl shadow-lg glass">
             <!-- Header -->
             <h1 class="text-3xl font-semibold text-center text-emerald-400 mb-6">Create a New Trip</h1>
 
             <!-- Form -->
-            <form method="POST" class="space-y-6">
+            <form method="POST" action="{% url 'create_trip' %}" class="space-y-6">
                 {% csrf_token %}
-                <!-- Form Fields -->
-                {{ form.as_p }}
+                <!-- Title Input -->
+                <div>
+                    <label for="title" class="block text-lg font-medium text-slate-300">Trip Title</label>
+                    <input type="text" id="title" name="title" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Enter the trip title" required>
+                </div>
+
+                <!-- Description Input -->
+                <div>
+                    <label for="description" class="block text-lg font-medium text-slate-300">Description</label>
+                    <textarea id="description" name="description" class="w-full mt-2 p-3 rounded-xl bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" rows="4" placeholder="Enter trip description" required></textarea>
+                </div>
+
+                <!-- Destination Input -->
+                <div>
+                    <label for="destination" class="block text-lg font-medium text-slate-300">Destination</label>
+                    <input type="text" id="destination" name="destination" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Where is this trip going?" required>
+                </div>
+
+                <!-- Departure Date -->
+                <div>
+                    <label for="departure_date" class="block text-lg font-medium text-slate-300">Departure Date</label>
+                    <input type="date" id="departure_date" name="departure_date" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+                </div>
+
+                <!-- Return Date -->
+                <div>
+                    <label for="return_date" class="block text-lg font-medium text-slate-300">Return Date</label>
+                    <input type="date" id="return_date" name="return_date" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+                </div>
+
+                <!-- Price Input -->
+                <div>
+                    <label for="price" class="block text-lg font-medium text-slate-300">Price</label>
+                    <input type="number" id="price" name="price" class="w-full mt-2 p-3 rounded-full bg-slate-800 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Enter the price" required>
+                </div>
+
+              
 
                 <!-- Submit Button -->
-                <button type="submit"
-                    class="w-full py-2 bg-emerald-500 text-black rounded-full text-lg font-medium hover:bg-emerald-400 transition duration-300">Create Trip</button>
+                <div>
+                    <button type="submit" class="w-full py-2 bg-emerald-500 text-black rounded-full text-lg font-medium hover:bg-emerald-400 transition duration-300">Create Trip</button>
+                </div>
             </form>
 
             <!-- Cancel Link -->
             <div class="text-center mt-4">
-                <a href="{% url 'trip_list' %}"
-                    class="text-sm text-slate-400 hover:text-emerald-300 hover:underline transition duration-300">Cancel</a>
+                <a href="{% url 'trip_list' %}" class="text-sm text-slate-400 hover:text-emerald-300 hover:underline transition duration-300">Cancel</a>
             </div>
         </div>
     </div>
